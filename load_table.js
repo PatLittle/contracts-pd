@@ -2,7 +2,7 @@
 function populateTable(data) {
 
   let tableData = _.map(data, function(obj) {
-    return [obj.period, obj.count];
+    return _.values(obj);
   });
 
   let headers = _.map(_.keys(data[0]), function(header) {

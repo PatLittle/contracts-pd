@@ -1,13 +1,13 @@
 
 
-function drawBarGraph(id, data) {
+function drawBarGraph(id, data, x_axis, y_axis) {
 
   var canvas = document.getElementById(id).getContext('2d');
   var data = {
-          labels: _.pluck(data, 'period'),
+          labels: _.pluck(data, x_axis),
           datasets: [{
               label: '# of Votes',
-              data: _.pluck(data, 'count'),
+              data: _.pluck(data, y_axis),
               backgroundColor: 'rgba(54, 162, 235, 0.2)',
               borderColor: 'rgba(54, 162, 235, 1)',
               borderWidth: 1
