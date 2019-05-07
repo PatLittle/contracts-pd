@@ -27,7 +27,7 @@ function drawBarGraph(id, data, x_axis, y_axis) {
             }]
       }
   }
-
+  
   var myBarChart = Chart.Bar(canvas, {
       data: data,
       options: options

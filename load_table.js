@@ -1,5 +1,5 @@
 
-function populateTable(data) {
+function populateTable(data, id) {
 
   let tableData = _.map(data, function(obj) {
     return _.values(obj);
@@ -10,7 +10,7 @@ function populateTable(data) {
   });
 
   $(document).ready(function() {
-    $('#table_id').DataTable( {
+    $('#'+id).DataTable( {
       paging : false,
       searching : false,
       bInfo : false,
