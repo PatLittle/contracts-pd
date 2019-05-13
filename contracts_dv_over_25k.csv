@@ -131,9 +131,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,OB,35,4645402.40,3255885.72,Canadian Nuclear Safety Commission,Commission canadienne de sûreté nucléaire
 2017,Good,Biens,OB,16,1034713.96,159962.95,Canadian Nuclear Safety Commission,Commission canadienne de sûreté nucléaire
 2017,Construction,Construction,OB,0,0,0,Canadian Nuclear Safety Commission,Commission canadienne de sûreté nucléaire
-2017,Service,Services,,0,0,0,Canada Revenue Agency,Agence du revenu du Canada
-2017,Good,Biens,,0,0,0,Canada Revenue Agency,Agence du revenu du Canada
-2017,Construction,Construction,,0,0,0,Canada Revenue Agency,Agence du revenu du Canada
 2017,Service,Services,OB,44,9161447.51,-2819057.62,Canada Revenue Agency,Agence du revenu du Canada
 2017,Good,Biens,OB,15,1459374.85,163722.24,Canada Revenue Agency,Agence du revenu du Canada
 2017,Construction,Construction,OB,0,0,0,Canada Revenue Agency,Agence du revenu du Canada
@@ -170,9 +167,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,TN,50,5874866.19,479055.14,Correctional Service of Canada,Service correctionnel du Canada
 2017,Good,Biens,TN,50,8220983.84,105614.51,Correctional Service of Canada,Service correctionnel du Canada
 2017,Construction,Construction,TN,6,208136.26,15750.00,Correctional Service of Canada,Service correctionnel du Canada
-2017,Service,Services,,3,247631.13,-510449.12,Correctional Service of Canada,Service correctionnel du Canada
-2017,Good,Biens,,3,687072.76,8535.59,Correctional Service of Canada,Service correctionnel du Canada
-2017,Construction,Construction,,0,0,0,Correctional Service of Canada,Service correctionnel du Canada
 2017,Service,Services,TN,0,0,314900.49,Canada School of Public Service,École de la fonction publique du Canada
 2017,Good,Biens,TN,3,120091.23,0,Canada School of Public Service,École de la fonction publique du Canada
 2017,Construction,Construction,TN,0,0,0,Canada School of Public Service,École de la fonction publique du Canada
@@ -203,9 +197,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,AC,0,0,91758.76,Global Affairs Canada,Affaires mondiales Canada
 2017,Good,Biens,AC,1,1073792.66,0,Global Affairs Canada,Affaires mondiales Canada
 2017,Construction,Construction,AC,0,0,0,Global Affairs Canada,Affaires mondiales Canada
-2017,Service,Services,ZC,1,225000.00,0,Global Affairs Canada,Affaires mondiales Canada
-2017,Good,Biens,ZC,0,0,0,Global Affairs Canada,Affaires mondiales Canada
-2017,Construction,Construction,ZC,0,0,0,Global Affairs Canada,Affaires mondiales Canada
 2017,Service,Services,TC,844,183573534.61,56009199.57,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Good,Biens,TC,1332,220336757.27,29342399.01,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Construction,Construction,TC,243,95423837.71,56066129.64,Fisheries and Oceans Canada,Pêches et Océans Canada
@@ -215,9 +206,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,TN,149,9761627.07,173664381.49,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Good,Biens,TN,12,416530.38,1917316.97,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Construction,Construction,TN,175,6038676.77,59271837.97,Fisheries and Oceans Canada,Pêches et Océans Canada
-2017,Service,Services,,12,1198754.03,11495458.72,Fisheries and Oceans Canada,Pêches et Océans Canada
-2017,Good,Biens,,28,5728749.11,13518797.47,Fisheries and Oceans Canada,Pêches et Océans Canada
-2017,Construction,Construction,,2,413602.76,-1903430.55,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Service,Services,AC,9,1024182.26,161429.05,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Good,Biens,AC,0,0,0,Fisheries and Oceans Canada,Pêches et Océans Canada
 2017,Construction,Construction,AC,0,0,0,Fisheries and Oceans Canada,Pêches et Océans Canada
@@ -401,9 +389,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,OB,2,305118.98,0,Military Police Complaints Commission of Canada,Commission d'examen des plaintes concernant la police militaire du Canada
 2017,Good,Biens,OB,0,0,0,Military Police Complaints Commission of Canada,Commission d'examen des plaintes concernant la police militaire du Canada
 2017,Construction,Construction,OB,0,0,0,Military Police Complaints Commission of Canada,Commission d'examen des plaintes concernant la police militaire du Canada
-2017,Service,Services,,0,0,0,National Energy Board,Office national de l'énergie
-2017,Good,Biens,,2,97961.75,0,National Energy Board,Office national de l'énergie
-2017,Construction,Construction,,0,0,0,National Energy Board,Office national de l'énergie
 2017,Service,Services,OB,48,10039137.00,5898225.06,National Energy Board,Office national de l'énergie
 2017,Good,Biens,OB,11,2433788.44,-47804.00,National Energy Board,Office national de l'énergie
 2017,Construction,Construction,OB,0,0,0,National Energy Board,Office national de l'énergie
@@ -449,24 +434,15 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,AC,29,6725440.06,1739090.79,National Research Council Canada,Conseil national de recherches Canada
 2017,Good,Biens,AC,11,1259056.00,0,National Research Council Canada,Conseil national de recherches Canada
 2017,Construction,Construction,AC,1,133245.00,0,National Research Council Canada,Conseil national de recherches Canada
-2017,Service,Services,TC          ,11,1886333.75,519734.27,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Good,Biens,TC          ,1,86522.82,2734.86,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Construction,Construction,TC          ,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Service,Services,TC,5,718541.33,102590.98,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Good,Biens,TC,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
+2017,Service,Services,TC,16,2604875.08,622325.25,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
+2017,Good,Biens,TC,1,86522.82,2734.86,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
 2017,Construction,Construction,TC,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Service,Services,AC,1,294818.12,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
+2017,Service,Services,AC,2,345668.12,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
 2017,Good,Biens,AC,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
 2017,Construction,Construction,AC,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Service,Services,TN,1,56623.07,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Good,Biens,TN,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
+2017,Service,Services,TN,2,105256.35,-13644.75,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
+2017,Good,Biens,TN,1,26831.41,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
 2017,Construction,Construction,TN,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Service,Services,TN          ,1,48633.28,-13644.75,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Good,Biens,TN          ,1,26831.41,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Construction,Construction,TN          ,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Service,Services,AC          ,1,50850.00,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Good,Biens,AC          ,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
-2017,Construction,Construction,AC          ,0,0,0,Natural Sciences and Engineering Research Council of Canada,Conseil de recherches en sciences naturelles et en génie du Canada
 2017,Service,Services,TN,5,328018.81,304392.63,Office of the Auditor General of Canada,Bureau du vérificateur général du Canada
 2017,Good,Biens,TN,5,1055745.15,34715.91,Office of the Auditor General of Canada,Bureau du vérificateur général du Canada
 2017,Construction,Construction,TN,0,0,0,Office of the Auditor General of Canada,Bureau du vérificateur général du Canada
@@ -488,9 +464,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,TN,3,150191.51,19471.20,Office of the Commissioner of Official Languages,Commissariat aux langues officielles
 2017,Good,Biens,TN,0,0,0,Office of the Commissioner of Official Languages,Commissariat aux langues officielles
 2017,Construction,Construction,TN,0,0,0,Office of the Commissioner of Official Languages,Commissariat aux langues officielles
-2017,Service,Services,,0,0,0,Office of the Privacy Commissioner of Canada,Commissariats à l’information et à la protection de la vie privée au Canada
-2017,Good,Biens,,0,0,0,Office of the Privacy Commissioner of Canada,Commissariats à l’information et à la protection de la vie privée au Canada
-2017,Construction,Construction,,0,0,0,Office of the Privacy Commissioner of Canada,Commissariats à l’information et à la protection de la vie privée au Canada
 2017,Service,Services,OB,20,2369541.85,5207127.25,Office of the Superintendent of Financial Institutions Canada,Bureau du surintendant des institutions financières Canada
 2017,Good,Biens,OB,7,879284.22,10170.00,Office of the Superintendent of Financial Institutions Canada,Bureau du surintendant des institutions financières Canada
 2017,Construction,Construction,OB,0,0,0,Office of the Superintendent of Financial Institutions Canada,Bureau du surintendant des institutions financières Canada
@@ -641,9 +614,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,AC,1,881476.82,521413.95,Royal Canadian Mounted Police,Gendarmerie royale du Canada
 2017,Good,Biens,AC,0,0,305233.54,Royal Canadian Mounted Police,Gendarmerie royale du Canada
 2017,Construction,Construction,AC,0,0,0,Royal Canadian Mounted Police,Gendarmerie royale du Canada
-2017,Service,Services,,1,50000.00,0,Security Intelligence Review Committee,Comité de surveillance des activités de renseignement de sécurité
-2017,Good,Biens,,2,169089.00,0,Security Intelligence Review Committee,Comité de surveillance des activités de renseignement de sécurité
-2017,Construction,Construction,,0,0,0,Security Intelligence Review Committee,Comité de surveillance des activités de renseignement de sécurité
 2017,Service,Services,TN,4,269317.00,0,Security Intelligence Review Committee,Comité de surveillance des activités de renseignement de sécurité
 2017,Good,Biens,TN,1,253081.70,0,Security Intelligence Review Committee,Comité de surveillance des activités de renseignement de sécurité
 2017,Construction,Construction,TN,0,0,0,Security Intelligence Review Committee,Comité de surveillance des activités de renseignement de sécurité
@@ -662,18 +632,12 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,AC,3,12516976.50,209344997.89,Shared Services Canada,Services partagés Canada
 2017,Good,Biens,AC,0,0,0,Shared Services Canada,Services partagés Canada
 2017,Construction,Construction,AC,0,0,0,Shared Services Canada,Services partagés Canada
-2017,Service,Services,AC,1,62500.00,39405.36,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
+2017,Service,Services,AC,2,90750.00,39405.36,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
 2017,Good,Biens,AC,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
 2017,Construction,Construction,AC,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Service,Services,TC,1,49009.22,65072.18,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Good,Biens,TC,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
+2017,Service,Services,TC,4,272829.45,222876.68,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
+2017,Good,Biens,TC,1,37095.49,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
 2017,Construction,Construction,TC,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Service,Services,AC          ,1,28250.00,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Good,Biens,AC          ,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Construction,Construction,AC          ,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Service,Services,TC          ,3,223820.23,157804.50,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Good,Biens,TC          ,1,37095.49,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
-2017,Construction,Construction,TC          ,0,0,0,Social Sciences and Humanities Research Council of Canada,Conseil de recherches en sciences humaines du Canada
 2017,Service,Services,TN,22,2797846.01,-20980.48,Statistics Canada,Statistique Canada
 2017,Good,Biens,TN,46,19630384.94,15820.00,Statistics Canada,Statistique Canada
 2017,Construction,Construction,TN,0,0,0,Statistics Canada,Statistique Canada
@@ -704,9 +668,6 @@ year,commodity_type_en,commodity_type_fr,solicitation_code,contracts_count,origi
 2017,Service,Services,TN,9,791971.28,171665.70,Treasury Board of Canada Secretariat,Secrétariat du Conseil du Trésor du Canada
 2017,Good,Biens,TN,5,281438.11,509708.91,Treasury Board of Canada Secretariat,Secrétariat du Conseil du Trésor du Canada
 2017,Construction,Construction,TN,0,0,0,Treasury Board of Canada Secretariat,Secrétariat du Conseil du Trésor du Canada
-2017,Service,Services,,173,43550821.88,20400487.66,Transport Canada,Transports Canada
-2017,Good,Biens,,251,34887959.48,3037840.28,Transport Canada,Transports Canada
-2017,Construction,Construction,,0,0,318213.57,Transport Canada,Transports Canada
 2017,Service,Services,OB,14,5252806.37,2371124.10,Transport Canada,Transports Canada
 2017,Good,Biens,OB,1,322504.88,0,Transport Canada,Transports Canada
 2017,Construction,Construction,OB,0,0,0,Transport Canada,Transports Canada
