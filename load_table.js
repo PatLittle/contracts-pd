@@ -14,7 +14,6 @@ function populateTable(data, id) {
       $('#'+id).DataTable( {
         searching : false,
         bInfo : false,
-        // ordering: false,
         data: tableData,
         columns: headers,
         scrollY:        "600px",
@@ -32,7 +31,6 @@ function populateTable(data, id) {
         paging : false,
         searching : false,
         bInfo : false,
-        ordering: false,
         data: tableData,
         columns: headers
       });
@@ -89,21 +87,31 @@ function updateTable(data, id) {
 
   var columnDefs = null;
   if (id == 'table2') {
-    columnDefs = [
-        {
-          "targets": [ 5 ],
-          "visible": false,
-        }
-    ];
+    $('#'+id).DataTable( {
+      paging : false,
+      searching : false,
+      bInfo : false,
+      ordering: false,
+      data: tableData,
+      columns: headers,
+      rowGroup: {
+        dataSrc: 5
+      },
+      columnDefs: [
+          {
+            "targets": [ 5 ],
+            "visible": false,
+          }
+      ]
+    });
+  } else {
+    $('#'+id).DataTable( {
+      paging : false,
+      searching : false,
+      bInfo : false,
+      data: tableData,
+      columns: headers,
+      columnDefs: columnDefs
+    });
   }
-
-  $('#'+id).DataTable( {
-    paging : false,
-    searching : false,
-    bInfo : false,
-    ordering: false,
-    data: tableData,
-    columns: headers,
-    columnDefs: columnDefs
-  });
 }

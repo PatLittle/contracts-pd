@@ -1,16 +1,20 @@
 
 let formatDollar = function(d) { return "$" + d3.format(",.0f")(d).replace(/G/,"B"); }
+let formatDollarMini = function(d) { return "$" + d3.format(".2s")(d).replace(/G/,"B"); }
 let formatPercent = function(d) { return d3.format(".1f")(d) + "%"; }
+let formatNumberMini = function(d) { return d3.format(".2s")(d).replace(/G/,"B"); }
 
 function spendingPerType(data) {
 
   var typeGroup =  _.chain(data).groupBy('commodity_type_en').value();
   let result = [];
+  var contracts_count_total = _.reduce(_.pluck(data, 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0);
+  var value_total = _.reduce(_.pluck(data, 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0) + _.reduce(_.pluck(data, 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
+
   for (var index in typeGroup) {
     var contracts_count = _.reduce(_.pluck(typeGroup[index], 'contracts_count'), function(memo, num) { return memo + parseInt(num) },0);
     var original_value = _.reduce(_.pluck(typeGroup[index], 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0);
     var amendment_value = _.reduce(_.pluck(typeGroup[index], 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
-    var value_total = _.reduce(_.pluck(data, 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0) + _.reduce(_.pluck(data, 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
     var percent_total = 100 * (contracts_count / _.reduce(_.pluck(data, 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0));
     var percent_total_value = 100 * ((original_value + amendment_value) / value_total);
     result.push({
@@ -21,6 +25,13 @@ function spendingPerType(data) {
       "Percent of total value": formatPercent(percent_total_value)
     });
   }
+  result.push({
+    "Commodity type": "Total",
+    "Number": contracts_count_total,
+    "Percent of total number of contracts": "100%",
+    "Value" : formatDollar(value_total),
+    "Percent of total value": "100%"
+  });
   return result;
 }
 
@@ -107,7 +118,6 @@ function valuesPerDept(data) {
 
 function solicitationData(data) {
   var solicitationGroup =  _.chain(data).groupBy('solicitation_code').value();
-  console.log(solicitationGroup);
   let result = [];
 
   var contracts_count_total = _.reduce(_.pluck(data, 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0);
@@ -246,24 +256,34 @@ function consumeData(error, under25k_data, over25k_data) {
       console.log("Error on data load");
   }
 
-  // Table 1 = tables 2 + 3
+  // Table 1
   let table1_output = spendingPerType(_.union(under25k_data, over25k_data));
   populateTable(table1_output, 'table1');
   function drawChart1(){
-    drawBarGraph('chart1', table1_output, "Commodity type", "Number");
+    drawDoughnutChart('chart1', table1_output.slice(0,3), "Commodity type", "Number");
+  }
+  function drawChart2(){
+    drawDoughnutChart('chart2', table1_output.slice(0,3), "Commodity type", "Value");
   }
 
-  // updating table 1
   d3.select('#value_range').property("value","All").on('change', function(){
     let sel_value = d3.select('#value_range').property("value");
     if(sel_value == 'under25k') {
       table1_output = spendingPerType(under25k_data);
+      updateTable(table1_output, 'table1');
+      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
     } else if(sel_value == 'over25k') {
       table1_output = spendingPerType(over25k_data);
+      updateTable(table1_output, 'table1');
+      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
     } else {
       table1_output = spendingPerType(_.union(under25k_data, over25k_data));
+      updateTable(table1_output, 'table1');
+      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
     }
-    updateTable(table1_output, 'table1');
   });
 
 
@@ -271,6 +291,9 @@ function consumeData(error, under25k_data, over25k_data) {
   var typeGroup =  _.chain(over25k_data).groupBy('commodity_type_en').value();
   let table2_output = solicitationData(over25k_data);
   populateCustomTable(table2_output, 'table2');
+  function drawChart3() {
+    drawBarChart('chart3', table2_output, "Commodity type", "Number");
+  }
 
   d3.select('#commodity_type').property("value","All").on('change', function(){
     let sel_value = d3.select('#commodity_type').property("value");
@@ -296,12 +319,12 @@ function consumeData(error, under25k_data, over25k_data) {
 
 
 // Animate Chart drawing using Materialize
-  // var options = [
-  //   {selector: '#chart1', offset:150, callback: drawChart1},
-  //   {selector: '#chart2', offset:150, callback: drawChart2},
-  //   {selector: '#chart3', offset:150, callback: drawChart3}
-  // ];
-  // Materialize.scrollFire(options);
+  var options = [
+    {selector: '#chart1', offset:150, callback: drawChart1},
+    {selector: '#chart2', offset:150, callback: drawChart2},
+    // {selector: '#chart3', offset:150, callback: drawChart3}
+  ];
+  Materialize.scrollFire(options);
 
 }
 
@@ -310,6 +333,8 @@ function consumeData(error, under25k_data, over25k_data) {
 
 
 d3.queue()
-  .defer(d3.csv, 'contracts_dv_under_25k.csv')
-  .defer(d3.csv, 'contracts_dv_over_25k.csv')
+  // .defer(d3.csv, 'contracts_dv_under_25k.csv')
+  // .defer(d3.csv, 'contracts_dv_over_25k.csv')
+  .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_under_25k.csv')
+  .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_over_25k.csv')
   .await(consumeData); //only function name is needed
