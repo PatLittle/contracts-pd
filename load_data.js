@@ -116,7 +116,7 @@ function valuesPerDept(data) {
 }
 
 
-function solicitationData(data) {
+function solicitationData(data, vizType) {
   var solicitationGroup =  _.chain(data).groupBy('solicitation_code').value();
   let result = [];
 
@@ -146,107 +146,158 @@ function solicitationData(data) {
   var value_TN = original_value_TN + amendment_value_TN;
 
 
-
-  result.push({
-    "Solicitation procedure for construction": "Electronic Bidding",
-    "Number": contracts_count_OB,
-    "Percent of total number of contracts": formatPercent(100 * (contracts_count_OB / contracts_count_total)),
-    "Value" : formatDollar(original_value_OB),
-    "Percent of total value": formatPercent(100 * (original_value_OB / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Traditional Competitive",
-    "Number": contracts_count_TC,
-    "Percent of total number of contracts": formatPercent(100 * (contracts_count_TC / contracts_count_total)),
-    "Value" : formatDollar(original_value_TC),
-    "Percent of total value": formatPercent(100 * (original_value_TC / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Total competitive awards",
-    "Number": contracts_count_OB + contracts_count_TC,
-    "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC) / contracts_count_total)),
-    "Value" : formatDollar(original_value_OB + original_value_TC),
-    "Percent of total value": formatPercent(100 * ((original_value_OB + original_value_TC) / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Net competitive amendments",
-    "Number": "N/A",
-    "Percent of total number of contracts": "N/A",
-    "Value" : formatDollar(amendment_value_OB + amendment_value_TC),
-    "Percent of total value": formatPercent(100 * ((amendment_value_OB + amendment_value_TC) / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Subtotal competitive awards, including amendments",
-    "Number": contracts_count_OB + contracts_count_TC,
-    "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC) / contracts_count_total)),
-    "Value" : formatDollar(value_OB + value_TC),
-    "Percent of total value": formatPercent(100 * ((value_OB + value_TC) / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Advance contract Award Notice (ACAN)",
-    "Number": contracts_count_AC,
-    "Percent of total number of contracts": formatPercent(100 * (contracts_count_AC / contracts_count_total)),
-    "Value" : formatDollar(original_value_AC),
-    "Percent of total value": formatPercent(100 * (original_value_AC / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Net ACAN amendments",
-    "Number": "N/A",
-    "Percent of total number of contracts": "N/A",
-    "Value" : formatDollar(amendment_value_AC),
-    "Percent of total value": formatPercent(100 * (amendment_value_AC / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Subtotal competitive awards and ACANs, including amendments",
-    "Number": contracts_count_OB + contracts_count_TC + contracts_count_AC,
-    "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC + contracts_count_AC) / contracts_count_total)),
-    "Value" : formatDollar(value_OB + value_TC + value_AC),
-    "Percent of total value": formatPercent(100 * ((value_OB + value_TC + value_AC) / value_total)),
-    "Section" : "Competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Non-competitive awards",
-    "Number": contracts_count_TN,
-    "Percent of total number of contracts": formatPercent(100 * (contracts_count_TN / contracts_count_total)),
-    "Value" : formatDollar(original_value_TN),
-    "Percent of total value": formatPercent(100 * (original_value_TN / original_value_total)),
-    "Section" : "Non-competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Net amendments",
-    "Number": "N/A",
-    "Percent of total number of contracts": "N/A",
-    "Value" : formatDollar(amendment_value_TN),
-    "Percent of total value": formatPercent(100 * (amendment_value_TN / value_total)),
-    "Section" : "Non-competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Non-competitive awards, including amendments",
-    "Number": contracts_count_TN,
-    "Percent of total number of contracts": formatPercent(100 * (contracts_count_TN / contracts_count_total)),
-    "Value" : formatDollar(value_TN),
-    "Percent of total value": formatPercent(100 * (value_TN / value_total)),
-    "Section" : "Non-competitive awards"
-  },
-  {
-    "Solicitation procedure for construction": "Total contracts $25,000 and above",
-    "Number": contracts_count_OB + contracts_count_TC + contracts_count_AC + contracts_count_TN,
-    "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC + contracts_count_AC + contracts_count_TN) / contracts_count_total)),
-    "Value" : formatDollar(value_OB + value_TC + value_AC + value_TN),
-    "Percent of total value": formatPercent(100 * ((value_OB + value_TC + value_AC + value_TN) / value_total)),
-    "Section" : "Total awards"
-  });
+if (vizType == 'table') {
+    result.push({
+      "Solicitation procedure for construction": "Electronic Bidding",
+      "Number": contracts_count_OB,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_OB / contracts_count_total)),
+      "Value" : formatDollar(original_value_OB),
+      "Percent of total value": formatPercent(100 * (original_value_OB / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Traditional Competitive",
+      "Number": contracts_count_TC,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_TC / contracts_count_total)),
+      "Value" : formatDollar(original_value_TC),
+      "Percent of total value": formatPercent(100 * (original_value_TC / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Total competitive awards",
+      "Number": contracts_count_OB + contracts_count_TC,
+      "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC) / contracts_count_total)),
+      "Value" : formatDollar(original_value_OB + original_value_TC),
+      "Percent of total value": formatPercent(100 * ((original_value_OB + original_value_TC) / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Net competitive amendments",
+      "Number": "N/A",
+      "Percent of total number of contracts": "N/A",
+      "Value" : formatDollar(amendment_value_OB + amendment_value_TC),
+      "Percent of total value": formatPercent(100 * ((amendment_value_OB + amendment_value_TC) / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Subtotal competitive awards, including amendments",
+      "Number": contracts_count_OB + contracts_count_TC,
+      "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC) / contracts_count_total)),
+      "Value" : formatDollar(value_OB + value_TC),
+      "Percent of total value": formatPercent(100 * ((value_OB + value_TC) / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Advance contract Award Notice (ACAN)",
+      "Number": contracts_count_AC,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_AC / contracts_count_total)),
+      "Value" : formatDollar(original_value_AC),
+      "Percent of total value": formatPercent(100 * (original_value_AC / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Net ACAN amendments",
+      "Number": "N/A",
+      "Percent of total number of contracts": "N/A",
+      "Value" : formatDollar(amendment_value_AC),
+      "Percent of total value": formatPercent(100 * (amendment_value_AC / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Subtotal competitive awards and ACANs, including amendments",
+      "Number": contracts_count_OB + contracts_count_TC + contracts_count_AC,
+      "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC + contracts_count_AC) / contracts_count_total)),
+      "Value" : formatDollar(value_OB + value_TC + value_AC),
+      "Percent of total value": formatPercent(100 * ((value_OB + value_TC + value_AC) / value_total)),
+      "Section" : "Competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Non-competitive awards",
+      "Number": contracts_count_TN,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_TN / contracts_count_total)),
+      "Value" : formatDollar(original_value_TN),
+      "Percent of total value": formatPercent(100 * (original_value_TN / original_value_total)),
+      "Section" : "Non-competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Net amendments",
+      "Number": "N/A",
+      "Percent of total number of contracts": "N/A",
+      "Value" : formatDollar(amendment_value_TN),
+      "Percent of total value": formatPercent(100 * (amendment_value_TN / value_total)),
+      "Section" : "Non-competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Non-competitive awards, including amendments",
+      "Number": contracts_count_TN,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_TN / contracts_count_total)),
+      "Value" : formatDollar(value_TN),
+      "Percent of total value": formatPercent(100 * (value_TN / value_total)),
+      "Section" : "Non-competitive awards"
+    },
+    {
+      "Solicitation procedure for construction": "Total contracts $25,000 and above",
+      "Number": contracts_count_OB + contracts_count_TC + contracts_count_AC + contracts_count_TN,
+      "Percent of total number of contracts": formatPercent(100 * ((contracts_count_OB + contracts_count_TC + contracts_count_AC + contracts_count_TN) / contracts_count_total)),
+      "Value" : formatDollar(value_OB + value_TC + value_AC + value_TN),
+      "Percent of total value": formatPercent(100 * ((value_OB + value_TC + value_AC + value_TN) / value_total)),
+      "Section" : "Total awards"
+    });
+  } else if (vizType == 'chart') {
+    result.push({
+      "Solicitation procedure for construction": "Electronic Bidding",
+      "Number": contracts_count_OB,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_OB / contracts_count_total)),
+      "Value original" : formatDollar(original_value_OB),
+      "Value amendment" : formatDollar(amendment_value_OB),
+      "Value" : formatDollar(value_OB),
+      "Percent of total value": formatPercent(100 * (value_OB / value_total)),
+    },{
+      "Solicitation procedure for construction": "Traditional Competitive",
+      "Number": contracts_count_TC,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_TC / contracts_count_total)),
+      "Value original" : formatDollar(original_value_TC),
+      "Value amendment" : formatDollar(amendment_value_TC),
+      "Value" : formatDollar(value_TC),
+      "Percent of total value": formatPercent(100 * (value_TC / value_total)),
+    },{
+      "Solicitation procedure for construction": "Advance contract Award Notice",
+      "Number": contracts_count_AC,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_AC / contracts_count_total)),
+      "Value original" : formatDollar(original_value_AC),
+      "Value amendment" : formatDollar(amendment_value_AC),
+      "Value" : formatDollar(value_AC),
+      "Percent of total value": formatPercent(100 * (value_AC / value_total)),
+    },{
+      "Solicitation procedure for construction": "Non-competitive awards",
+      "Number": contracts_count_TN,
+      "Percent of total number of contracts": formatPercent(100 * (contracts_count_TN / contracts_count_total)),
+      "Value original" : formatDollar(original_value_TN),
+      "Value amendment" : formatDollar(amendment_value_TN),
+      "Value" : formatDollar(value_TN),
+      "Percent of total value": formatPercent(100 * (value_TN / value_total)),
+    });
+  }
 
 
   return result;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -289,18 +340,28 @@ function consumeData(error, under25k_data, over25k_data) {
 
   // Table 2
   var typeGroup =  _.chain(over25k_data).groupBy('commodity_type_en').value();
-  let table2_output = solicitationData(over25k_data);
+  let table2_output = solicitationData(over25k_data, 'table');
+  let chart3_4_output = solicitationData(over25k_data, 'chart');
   populateCustomTable(table2_output, 'table2');
   function drawChart3() {
-    drawBarChart('chart3', table2_output, "Commodity type", "Number");
+    drawBarChart('chart3', chart3_4_output, "Solicitation procedure for construction", "Number");
+  }
+  function drawChart4() {
+    drawBarChart('chart4', chart3_4_output, "Solicitation procedure for construction", "Value");
   }
 
   d3.select('#commodity_type').property("value","All").on('change', function(){
     let sel_value = d3.select('#commodity_type').property("value");
     if(sel_value != 'All') {
-      table2_output = solicitationData(typeGroup[sel_value]);
+      table2_output = solicitationData(typeGroup[sel_value], 'table');
+      chart3_4_output = solicitationData(typeGroup[sel_value], 'chart');
+      updateBarChart('chart3', chart3_4_output, "Number");
+      updateBarChart('chart4', chart3_4_output, "Value");
     } else {
-      table2_output = solicitationData(over25k_data);
+      table2_output = solicitationData(over25k_data, 'table');
+      chart3_4_output = solicitationData(over25k_data, 'chart');
+      updateBarChart('chart3', chart3_4_output, "Number");
+      updateBarChart('chart4', chart3_4_output, "Value");
     }
     updateTable(table2_output, 'table2');
   });
@@ -320,9 +381,10 @@ function consumeData(error, under25k_data, over25k_data) {
 
 // Animate Chart drawing using Materialize
   var options = [
-    {selector: '#chart1', offset:150, callback: drawChart1},
-    {selector: '#chart2', offset:150, callback: drawChart2},
-    // {selector: '#chart3', offset:150, callback: drawChart3}
+    {selector: '#chart1', offset:50, callback: drawChart1},
+    {selector: '#chart2', offset:50, callback: drawChart2},
+    {selector: '#chart3', offset:50, callback: drawChart3},
+    {selector: '#chart4', offset:50, callback: drawChart4}
   ];
   Materialize.scrollFire(options);
 
@@ -333,8 +395,8 @@ function consumeData(error, under25k_data, over25k_data) {
 
 
 d3.queue()
-  // .defer(d3.csv, 'contracts_dv_under_25k.csv')
-  // .defer(d3.csv, 'contracts_dv_over_25k.csv')
-  .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_under_25k.csv')
-  .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_over_25k.csv')
+  .defer(d3.csv, 'contracts_dv_under_25k.csv')
+  .defer(d3.csv, 'contracts_dv_over_25k.csv')
+  // .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_under_25k.csv')
+  // .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_over_25k.csv')
   .await(consumeData); //only function name is needed

@@ -2,3 +2,11 @@ h2 {
   margin-top: 80px;
   margin-bottom: 30px;
 }
+
+canvas {
+  margin-bottom: 50px;
+}
+
+select {
+   max-width:15%;
+}
