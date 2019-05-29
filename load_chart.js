@@ -88,6 +88,8 @@ function drawBarChart(id, data, x_axis, y_axis) {
   }
 
   var canvas = document.getElementById(id).getContext('2d');
+  console.log("labels: " + _.pluck(data, x_axis));
+  console.log("label: " + _.pluck(data, y_axis));
   if(y_axis == "Number") {
     var chartData = {
           labels: _.pluck(data, x_axis),
