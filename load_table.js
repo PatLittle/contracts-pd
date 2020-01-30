@@ -1,9 +1,17 @@
 
 function populateTable(data, id) {
 
+  if (id == 'table5' || id == 'table6') {
+    data = _.map(data, function(obj) {
+      return _.values(obj);
+    });
+  }
+  console.log(data);
+
   let tableData = _.map(data, function(obj) {
     return _.values(obj);
   });
+  // console.log(tableData);
 
   let headers = _.map(_.keys(data[0]), function(header) {
     return { title: header };

@@ -98,35 +98,74 @@ function drawLineChart(id, data, x_axis, y_axis) {
     Chart.defaults.global.elements.line.pointRadius = 4;
     Chart.defaults.global.elements.line.pointHitRadius = 10;
 
-    var chartData = {
-    labels: _.pluck(data["Total"], x_axis),
-    datasets: [
-        {
-          label: "Total",
-          backgroundColor: "red",
-          borderColor: "red",
-          data: _.pluck(data["Total"], y_axis),
-        },
-        {
-          label: "Service",
-          backgroundColor: "blue",
-          borderColor: "blue",
-          data: _.pluck(data["Service"], y_axis),
-        },
-        {
-          label: "Good",
-          backgroundColor: "green",
-          borderColor: "green",
-          data: _.pluck(data["Good"], y_axis),
-        },
-        {
-          label: "Construction",
-          backgroundColor: "orange",
-          borderColor: "orange",
-          data: _.pluck(data["Construction"], y_axis),
-        },
-    ]
-    };
+    if(id == 'chart5' || id == 'chart6') {
+        var chartData = {
+            labels: _.pluck(data["Total"], x_axis),
+            datasets: [
+                {
+                  label: "Total",
+                  backgroundColor: "red",
+                  borderColor: "red",
+                  data: _.pluck(data["Total"], y_axis),
+                },
+                {
+                  label: "Service",
+                  backgroundColor: "blue",
+                  borderColor: "blue",
+                  data: _.pluck(data["Service"], y_axis),
+                },
+                {
+                  label: "Good",
+                  backgroundColor: "green",
+                  borderColor: "green",
+                  data: _.pluck(data["Good"], y_axis),
+                },
+                {
+                  label: "Construction",
+                  backgroundColor: "orange",
+                  borderColor: "orange",
+                  data: _.pluck(data["Construction"], y_axis),
+                },
+            ]
+        };
+    } else {
+        var chartData = {
+            labels: _.pluck(data["Total"], x_axis),
+            datasets: [
+                {
+                  label: "Total",
+                  backgroundColor: "red",
+                  borderColor: "red",
+                  data: _.pluck(data["Total"], y_axis),
+                },
+                {
+                  label: "TC",
+                  backgroundColor: "blue",
+                  borderColor: "blue",
+                  data: _.pluck(data["TC"], y_axis),
+                },
+                {
+                  label: "OB",
+                  backgroundColor: "green",
+                  borderColor: "green",
+                  data: _.pluck(data["OB"], y_axis),
+                },
+                {
+                  label: "AC",
+                  backgroundColor: "orange",
+                  borderColor: "orange",
+                  data: _.pluck(data["AC"], y_axis),
+                },
+                {
+                  label: "TN",
+                  backgroundColor: "black",
+                  borderColor: "black",
+                  data: _.pluck(data["TN"], y_axis),
+                },
+            ]
+        };
+    }
+
 
     var options = {
         scales: {
