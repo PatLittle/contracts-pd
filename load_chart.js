@@ -69,6 +69,89 @@ function drawDoughnutChart(id, data, x_axis, y_axis) {
 }
 
 
+function drawLineChart(id, data, x_axis, y_axis) {
+
+    if (y_axis == 'Value') {
+        for( type in data) {
+            _.map(data[type], function(obj) {
+                obj['Value'] = parseInt(obj['Value'].replace(/,/g, '').replace('$', ''));
+                return obj;
+            });
+        }
+
+    }
+    var canvas = document.getElementById(id).getContext('2d');
+
+    //Configure global variables for all lines
+    Chart.defaults.global.elements.line.fill = false;
+    Chart.defaults.global.elements.line.lineTension = 0.1;
+    Chart.defaults.global.elements.line.borderCapStyle = 'square';
+    Chart.defaults.global.elements.line.borderDash = []; // try [5, 15] for instance
+    Chart.defaults.global.elements.line.borderDashOffset = 0.0;
+    Chart.defaults.global.elements.line.pointBorderColor = "black";
+    Chart.defaults.global.elements.line.pointBackgroundColor = "white";
+    Chart.defaults.global.elements.line.pointBorderWidth = 1;
+    Chart.defaults.global.elements.line.pointHoverRadius = 8;
+    Chart.defaults.global.elements.line.pointHoverBackgroundColor = "yellow";
+    Chart.defaults.global.elements.line.pointHoverBorderColor = "brown";
+    Chart.defaults.global.elements.line.pointHoverBorderWidth = 2;
+    Chart.defaults.global.elements.line.pointRadius = 4;
+    Chart.defaults.global.elements.line.pointHitRadius = 10;
+
+    var chartData = {
+    labels: _.pluck(data["Total"], x_axis),
+    datasets: [
+        {
+          label: "Total",
+          backgroundColor: "red",
+          borderColor: "red",
+          data: _.pluck(data["Total"], y_axis),
+        },
+        {
+          label: "Service",
+          backgroundColor: "blue",
+          borderColor: "blue",
+          data: _.pluck(data["Service"], y_axis),
+        },
+        {
+          label: "Good",
+          backgroundColor: "green",
+          borderColor: "green",
+          data: _.pluck(data["Good"], y_axis),
+        },
+        {
+          label: "Construction",
+          backgroundColor: "orange",
+          borderColor: "orange",
+          data: _.pluck(data["Construction"], y_axis),
+        },
+    ]
+    };
+
+    var options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                },
+                scaleLabel: {
+                     display: true,
+                     labelString: 'Years',
+                     fontSize: 20
+                  }
+            }]
+        }
+    };
+
+  myCharts[id] = new Chart(canvas, {
+      type: 'line',
+      data: chartData,
+      options: options
+  });
+
+
+}
+
 
 
 
