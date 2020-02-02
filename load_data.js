@@ -77,10 +77,12 @@ function spendingPerYear(data, dep_name, chartType) {
   for (var type in typeGroup) {
     var resultPerType = []
     for (var year in typeGroup[type]) {
+      var contracts_count_total = _.reduce(_.pluck(yearGroup[year], 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0);
+      var value_total = _.reduce(_.pluck(yearGroup[year], 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0) + _.reduce(_.pluck(yearGroup[year], 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
       var contracts_count = _.reduce(_.pluck(typeGroup[type][year], 'contracts_count'), function(memo, num) { return memo + parseInt(num) },0);
       var original_value = _.reduce(_.pluck(typeGroup[type][year], 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0);
       var amendment_value = _.reduce(_.pluck(typeGroup[type][year], 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
-      var percent_total = 100 * (contracts_count / _.reduce(_.pluck(typeGroup[type][year], 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0));
+      var percent_total = 100 * (contracts_count / contracts_count_total);
       var percent_total_value = 100 * ((original_value + amendment_value) / value_total);
       if (chartType == 'commodity_type_en') {
         resultPerType.push({
@@ -381,6 +383,41 @@ function consumeData(error, under25k_data, over25k_data) {
       console.log("Error on data load");
   }
 
+  var deps_list = _.sortBy(_.uniq(_.pluck(_.union(under25k_data, over25k_data),'department_en')), function (dep) {return dep});
+  deps_list.unshift('All');
+  var deps_list_under_10k = _.uniq(_.pluck(under25k_data,'department_en'));
+  console.log(deps_list);
+  console.log(deps_list_under_10k);
+  // _.sortBy(["Bob", "Mary", "Alice"], function (name) {return name});
+  
+  // load select list options
+  var select = d3.select("#select_dep");
+  // for (var i = 0; i < deps_list.length; i++) {
+  //   select.append('option');
+  // }
+  select.selectAll("option")
+      .data(deps_list)
+      .enter()
+      .append("option")
+        // .attr("value", function (d) { return d; })
+        .text(function (d) { 
+          console.log(d);
+          return d; 
+        });
+
+  // dropdown.selectAll("option")
+  //         .data(cereals)
+  //         .enter().append("option")
+  //           .attr("value", function (d) { return d; })
+  //           .text(function (d) {
+  //           return d[0].toUpperCase() + d.slice(1,d.length); // capitalize 1st letter
+  //       });
+
+
+    
+  
+
+
   // Table 1
   let table1_output = spendingPerType(_.union(under25k_data, over25k_data));
   let table5_output = spendingPerYear(_.union(under25k_data, over25k_data), 'All', 'commodity_type_en');
@@ -388,6 +425,7 @@ function consumeData(error, under25k_data, over25k_data) {
   // console.log(table1_output);
   populateTable(table1_output, 'table1');
   populateTable(table5_output, 'table5');
+  populateTable(table6_output, 'table6');
   function drawChart1(){
     drawDoughnutChart('chart1', table1_output.slice(0,3), "Commodity type", "Number");
   }
@@ -397,6 +435,30 @@ function consumeData(error, under25k_data, over25k_data) {
 
   d3.select('#value_range').property("value","All").on('change', function(){
     let sel_value = d3.select('#value_range').property("value");
+    if(sel_value == 'under25k') {
+      table1_output = spendingPerType(under25k_data);
+      updateTable(table1_output, 'table1');
+      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
+    } else if(sel_value == 'over25k') {
+      table1_output = spendingPerType(over25k_data);
+      updateTable(table1_output, 'table1');
+      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
+    } else {
+      table1_output = spendingPerType(_.union(under25k_data, over25k_data));
+      updateTable(table1_output, 'table1');
+      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
+    }
+  });
+
+
+  d3.select('#select_dep').property("value","All").on('change', function(){
+    let sel_value = d3.select('#select_dep').property("value");
+    let table5_output = spendingPerYear(_.union(under25k_data, over25k_data), sel_value, 'commodity_type_en');
+    updateTable(table5_output, 'table5');
+    // updateLineChart('chart5', table1_output.slice(0,3), "Number");
     if(sel_value == 'under25k') {
       table1_output = spendingPerType(under25k_data);
       updateTable(table1_output, 'table1');
@@ -481,8 +543,8 @@ function consumeData(error, under25k_data, over25k_data) {
     {selector: '#chart6', offset:50, callback: drawChart6},
     {selector: '#chart7', offset:50, callback: drawChart7},
     {selector: '#chart8', offset:50, callback: drawChart8},
-    {selector: '#chart3', offset:50, callback: drawChart3},
-    {selector: '#chart4', offset:50, callback: drawChart4}
+    // {selector: '#chart3', offset:50, callback: drawChart3},
+    // {selector: '#chart4', offset:50, callback: drawChart4}
   ];
   Materialize.scrollFire(options);
 
