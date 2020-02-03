@@ -1,7 +1,7 @@
 
 function populateTable(data, id) {
 
-  console.log(data);
+  // console.log(data);
 
   if (id == 'table5' || id == 'table6') {
     // data = _.map(data, function(obj) {

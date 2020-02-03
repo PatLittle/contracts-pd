@@ -80,9 +80,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
         }
 
     }
-    if(id =='chart5') {
-      console.log(data);
-    }
+    console.log(data);
     var canvas = document.getElementById(id).getContext('2d');
 
     //Configure global variables for all lines
@@ -202,7 +200,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
 
 function drawBarChart(id, data, x_axis, y_axis) {
 
-  console.log(data);
+  // console.log(data);
   if (y_axis != 'Number') {
     _.map(data, function(obj) {
       obj['Value original'] = parseInt(obj['Value original'].replace(/,/g, '').replace('$', ''));
@@ -378,7 +376,7 @@ function updateLineChart(id, data, y_axis) {
     myCharts[id].data.datasets[3].data = _.pluck(data['AC'], y_axis);
     myCharts[id].data.datasets[4].data = _.pluck(data['TN'], y_axis);
   }
-
+  console.log(_.pluck(data['OB'], y_axis));
   myCharts[id].update();
 }
 

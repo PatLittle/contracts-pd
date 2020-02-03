@@ -364,19 +364,6 @@ if (vizType == 'table') {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function consumeData(error, under25k_data, over25k_data) {
 
   if (error){
@@ -466,6 +453,7 @@ function consumeData(error, under25k_data, over25k_data) {
     updateTable(table5_output, 'table5');
     updateLineChart('chart5', table5_output, 'Value');
     updateLineChart('chart6', table5_output, 'Number');
+    console.log(table5_output);
   });
 
   d3.select('#solicit_dep').property("value","All").on('change', function(){
@@ -474,6 +462,7 @@ function consumeData(error, under25k_data, over25k_data) {
     updateTable(table6_output, 'table6');
     updateLineChart('chart7', table6_output, 'Value');
     updateLineChart('chart8', table6_output, 'Number');
+    console.log(table6_output);
   });
 
   function drawChart5(){
