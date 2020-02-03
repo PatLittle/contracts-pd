@@ -12,7 +12,7 @@ function populateTable(data, id) {
       newData = _.union(newData, data[index]);
     }
     data = newData;
-    console.log(data);
+    // console.log(data);
   }
 
   
@@ -93,6 +93,18 @@ function populateCustomTable(data, id) {
 
 function updateTable(data, id) {
   $('#'+id).DataTable().destroy();
+
+  if (id == 'table5' || id == 'table6') {
+    // data = _.map(data, function(obj) {
+    //   return _.values(obj);
+    // });
+    newData = [];
+    for (index in data) {
+      newData = _.union(newData, data[index]);
+    }
+    data = newData;
+    // console.log(data);
+  }
 
   let tableData = _.map(data, function(obj) {
     return _.values(obj);
