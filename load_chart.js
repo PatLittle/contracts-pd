@@ -80,6 +80,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
         }
 
     }
+    console.log(data);
     var canvas = document.getElementById(id).getContext('2d');
 
     //Configure global variables for all lines
@@ -199,7 +200,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
 
 function drawBarChart(id, data, x_axis, y_axis) {
 
-  console.log(data);
+  // console.log(data);
   if (y_axis != 'Number') {
     _.map(data, function(obj) {
       obj['Value original'] = parseInt(obj['Value original'].replace(/,/g, '').replace('$', ''));
@@ -349,6 +350,33 @@ function updateDoughnutChart(id, data, y_axis) {
     }
   }
 
+  myCharts[id].update();
+}
+
+
+function updateLineChart(id, data, y_axis) {
+
+  if (y_axis == 'Value') {
+    for( type in data) {
+        _.map(data[type], function(obj) {
+            obj['Value'] = parseInt(obj['Value'].replace(/,/g, '').replace('$', ''));
+            return obj;
+        });
+    }
+  }
+
+  myCharts[id].data.datasets[0].data = _.pluck(data['Total'], y_axis);
+  if(id == 'chart5' || id == 'chart6') {
+    myCharts[id].data.datasets[1].data = _.pluck(data['Service'], y_axis);
+    myCharts[id].data.datasets[2].data = _.pluck(data['Good'], y_axis);
+    myCharts[id].data.datasets[3].data = _.pluck(data['Construction'], y_axis);
+  } else if (id == 'chart7' || id == 'chart8') {
+    myCharts[id].data.datasets[1].data = _.pluck(data['TC'], y_axis);
+    myCharts[id].data.datasets[2].data = _.pluck(data['OB'], y_axis);
+    myCharts[id].data.datasets[3].data = _.pluck(data['AC'], y_axis);
+    myCharts[id].data.datasets[4].data = _.pluck(data['TN'], y_axis);
+  }
+  console.log(_.pluck(data['OB'], y_axis));
   myCharts[id].update();
 }
 
