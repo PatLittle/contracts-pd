@@ -364,15 +364,16 @@ if (vizType == 'table') {
 
 
 
-function consumeData(error, under25k_data, over25k_data) {
+function consumeData(error, under10k_data, over10k_data) {
 
   if (error){
       console.log("Error on data load");
   }
 
-  var deps_list = _.sortBy(_.uniq(_.pluck(_.union(under25k_data, over25k_data),'department_en')), function (dep) {return dep});
+  var deps_list = _.sortBy(_.uniq(_.pluck(_.union(under10k_data, over10k_data),'department_en')), function (dep) {return dep});
   deps_list.unshift('All');
-  var deps_list_under_10k = _.uniq(_.pluck(under25k_data,'department_en'));
+  var deps_list_over_10k = _.uniq(_.pluck(over10k_data,'department_en'));
+  deps_list_over_10k.unshift('All');
   // console.log(deps_list);
   // console.log(deps_list_under_10k);
   // _.sortBy(["Bob", "Mary", "Alice"], function (name) {return name});
@@ -390,7 +391,7 @@ function consumeData(error, under25k_data, over25k_data) {
 
   var select_solicit_dep = d3.select("#solicit_dep");
   select_solicit_dep.selectAll("option")
-      .data(deps_list)
+      .data(deps_list_over_10k)
       .enter()
       .append("option")
         // .attr("value", function (d) { return d; })
@@ -411,57 +412,57 @@ function consumeData(error, under25k_data, over25k_data) {
   
 
 
-  // Table 1
-  let table1_output = spendingPerType(_.union(under25k_data, over25k_data));
-  let table5_output = spendingPerYear(_.union(under25k_data, over25k_data), 'All', 'commodity_type_en');
-  let table6_output = spendingPerYear(over25k_data, 'All', 'solicitation_code');
-  // console.log(table1_output);
-  populateTable(table1_output, 'table1');
+  // // Table 1
+  // let table1_output = spendingPerType(_.union(under10k_data, over10k_data));
+  let table5_output = spendingPerYear(_.union(under10k_data, over10k_data), 'All', 'commodity_type_en');
+  let table6_output = spendingPerYear(over10k_data, 'All', 'solicitation_code');
+  // // console.log(table1_output);
+  // populateTable(table1_output, 'table1');
   populateTable(table5_output, 'table5');
   populateTable(table6_output, 'table6');
-  function drawChart1(){
-    drawDoughnutChart('chart1', table1_output.slice(0,3), "Commodity type", "Number");
-  }
-  function drawChart2(){
-    drawDoughnutChart('chart2', table1_output.slice(0,3), "Commodity type", "Value");
-  }
+  // function drawChart1(){
+  //   drawDoughnutChart('chart1', table1_output.slice(0,3), "Commodity type", "Number");
+  // }
+  // function drawChart2(){
+  //   drawDoughnutChart('chart2', table1_output.slice(0,3), "Commodity type", "Value");
+  // }
 
-  d3.select('#value_range').property("value","All").on('change', function(){
-    let sel_value = d3.select('#value_range').property("value");
-    if(sel_value == 'under25k') {
-      table1_output = spendingPerType(under25k_data);
-      updateTable(table1_output, 'table1');
-      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
-      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
-    } else if(sel_value == 'over25k') {
-      table1_output = spendingPerType(over25k_data);
-      updateTable(table1_output, 'table1');
-      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
-      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
-    } else {
-      table1_output = spendingPerType(_.union(under25k_data, over25k_data));
-      updateTable(table1_output, 'table1');
-      updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
-      updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
-    }
-  });
+  // d3.select('#value_range').property("value","All").on('change', function(){
+  //   let sel_value = d3.select('#value_range').property("value");
+  //   if(sel_value == 'under25k') {
+  //     table1_output = spendingPerType(under10k_data);
+  //     updateTable(table1_output, 'table1');
+  //     updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+  //     updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
+  //   } else if(sel_value == 'over25k') {
+  //     table1_output = spendingPerType(over10k_data);
+  //     updateTable(table1_output, 'table1');
+  //     updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+  //     updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
+  //   } else {
+  //     table1_output = spendingPerType(_.union(under10k_data, over10k_data));
+  //     updateTable(table1_output, 'table1');
+  //     updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
+  //     updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
+  //   }
+  // });
 
 
   d3.select('#commodity_dep').property("value","All").on('change', function(){
     let sel_value = d3.select('#commodity_dep').property("value");
-    let table5_output = spendingPerYear(_.union(under25k_data, over25k_data), sel_value, 'commodity_type_en');
+    let table5_output = spendingPerYear(_.union(under10k_data, over10k_data), sel_value, 'commodity_type_en');
     updateTable(table5_output, 'table5');
-    updateLineChart('chart5', table5_output, 'Value');
-    updateLineChart('chart6', table5_output, 'Number');
+    updateLineChart('chart5', table5_output, 'Year', 'Value');
+    updateLineChart('chart6', table5_output, 'Year', 'Number');
     console.log(table5_output);
   });
 
   d3.select('#solicit_dep').property("value","All").on('change', function(){
     let sel_value = d3.select('#solicit_dep').property("value");
-    let table6_output = spendingPerYear(over25k_data, sel_value, 'solicitation_code');
+    let table6_output = spendingPerYear(over10k_data, sel_value, 'solicitation_code');
     updateTable(table6_output, 'table6');
-    updateLineChart('chart7', table6_output, 'Value');
-    updateLineChart('chart8', table6_output, 'Number');
+    updateLineChart('chart7', table6_output, 'Year', 'Value');
+    updateLineChart('chart8', table6_output, 'Year', 'Number');
     console.log(table6_output);
   });
 
@@ -482,40 +483,40 @@ function consumeData(error, under25k_data, over25k_data) {
   }
 
 
-  // Table 2
-  var typeGroup =  _.chain(over25k_data).groupBy('commodity_type_en').value();
-  let table2_output = solicitationData(over25k_data, 'table');
-  let chart3_4_output = solicitationData(over25k_data, 'chart');
-  populateCustomTable(table2_output, 'table2');
-  function drawChart3() {
-    drawBarChart('chart3', chart3_4_output, "Solicitation procedure for construction", "Number");
-  }
-  function drawChart4() {
-    drawBarChart('chart4', chart3_4_output, "Solicitation procedure for construction", "Value");
-  }
+  // // Table 2
+  // var typeGroup =  _.chain(over10k_data).groupBy('commodity_type_en').value();
+  // let table2_output = solicitationData(over10k_data, 'table');
+  // let chart3_4_output = solicitationData(over10k_data, 'chart');
+  // populateCustomTable(table2_output, 'table2');
+  // function drawChart3() {
+  //   drawBarChart('chart3', chart3_4_output, "Solicitation procedure for construction", "Number");
+  // }
+  // function drawChart4() {
+  //   drawBarChart('chart4', chart3_4_output, "Solicitation procedure for construction", "Value");
+  // }
 
-  d3.select('#commodity_type').property("value","All").on('change', function(){
-    let sel_value = d3.select('#commodity_type').property("value");
-    if(sel_value != 'All') {
-      table2_output = solicitationData(typeGroup[sel_value], 'table');
-      chart3_4_output = solicitationData(typeGroup[sel_value], 'chart');
-      updateBarChart('chart3', chart3_4_output, "Number");
-      updateBarChart('chart4', chart3_4_output, "Value");
-    } else {
-      table2_output = solicitationData(over25k_data, 'table');
-      chart3_4_output = solicitationData(over25k_data, 'chart');
-      updateBarChart('chart3', chart3_4_output, "Number");
-      updateBarChart('chart4', chart3_4_output, "Value");
-    }
-    updateTable(table2_output, 'table2');
-  });
+  // d3.select('#commodity_type').property("value","All").on('change', function(){
+  //   let sel_value = d3.select('#commodity_type').property("value");
+  //   if(sel_value != 'All') {
+  //     table2_output = solicitationData(typeGroup[sel_value], 'table');
+  //     chart3_4_output = solicitationData(typeGroup[sel_value], 'chart');
+  //     updateBarChart('chart3', chart3_4_output, "Number");
+  //     updateBarChart('chart4', chart3_4_output, "Value");
+  //   } else {
+  //     table2_output = solicitationData(over10k_data, 'table');
+  //     chart3_4_output = solicitationData(over10k_data, 'chart');
+  //     updateBarChart('chart3', chart3_4_output, "Number");
+  //     updateBarChart('chart4', chart3_4_output, "Value");
+  //   }
+  //   updateTable(table2_output, 'table2');
+  // });
 
   // //Table 3
-  // let table3_output = numbersPerDept(over25k_data);
+  // let table3_output = numbersPerDept(over10k_data);
   // populateTable(table3_output, 'table3');
 
   // //Table 4
-  // let table4_output = valuesPerDept(over25k_data);
+  // let table4_output = valuesPerDept(over10k_data);
   // populateTable(table4_output, 'table4');
 
 
@@ -525,8 +526,8 @@ function consumeData(error, under25k_data, over25k_data) {
 
 // Animate Chart drawing using Materialize
   var options = [
-    {selector: '#chart1', offset:50, callback: drawChart1},
-    {selector: '#chart2', offset:50, callback: drawChart2},
+    // {selector: '#chart1', offset:50, callback: drawChart1},
+    // {selector: '#chart2', offset:50, callback: drawChart2},
     {selector: '#chart5', offset:50, callback: drawChart5},
     {selector: '#chart6', offset:50, callback: drawChart6},
     {selector: '#chart7', offset:50, callback: drawChart7},

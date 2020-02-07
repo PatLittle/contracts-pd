@@ -84,20 +84,20 @@ function drawLineChart(id, data, x_axis, y_axis) {
     var canvas = document.getElementById(id).getContext('2d');
 
     //Configure global variables for all lines
+    // console.log("object: " + JSON.stringify(Chart.defaults));
+    console.log(Chart.defaults);
     Chart.defaults.global.elements.line.fill = false;
-    Chart.defaults.global.elements.line.lineTension = 0.1;
+    // Chart.defaults.global.elements.line.lineTension = 0.1;
     Chart.defaults.global.elements.line.borderCapStyle = 'square';
     Chart.defaults.global.elements.line.borderDash = []; // try [5, 15] for instance
-    Chart.defaults.global.elements.line.borderDashOffset = 0.0;
-    Chart.defaults.global.elements.line.pointBorderColor = "black";
-    Chart.defaults.global.elements.line.pointBackgroundColor = "white";
-    Chart.defaults.global.elements.line.pointBorderWidth = 1;
-    Chart.defaults.global.elements.line.pointHoverRadius = 8;
-    Chart.defaults.global.elements.line.pointHoverBackgroundColor = "yellow";
-    Chart.defaults.global.elements.line.pointHoverBorderColor = "brown";
-    Chart.defaults.global.elements.line.pointHoverBorderWidth = 2;
-    Chart.defaults.global.elements.line.pointRadius = 4;
-    Chart.defaults.global.elements.line.pointHitRadius = 10;
+    // Chart.defaults.global.elements.line.pointBorderColor = "black";
+    // Chart.defaults.global.elements.line.pointBorderWidth = 1;
+    // Chart.defaults.global.elements.line.pointHoverRadius = 8;
+    // Chart.defaults.global.elements.line.pointHoverBackgroundColor = "yellow";
+    // Chart.defaults.global.elements.line.pointHoverBorderColor = "brown";
+    // Chart.defaults.global.elements.line.pointHoverBorderWidth = 2;
+    // Chart.defaults.global.elements.line.pointRadius = 4;
+    // Chart.defaults.global.elements.line.pointHitRadius = 10;
 
     if(id == 'chart5' || id == 'chart6') {
         var chartData = {
@@ -105,27 +105,33 @@ function drawLineChart(id, data, x_axis, y_axis) {
             datasets: [
                 {
                   label: "Total",
-                  backgroundColor: "red",
-                  borderColor: "red",
+                  backgroundColor: "rgb(204,0,0)",
+                  borderColor: "rgb(204,0,0)",
                   data: _.pluck(data["Total"], y_axis),
+                  pointBorderColor: "black",
+                  pointBackgroundColor: "white",
+                  lineTension: 0.2
                 },
                 {
                   label: "Service",
-                  backgroundColor: "blue",
-                  borderColor: "blue",
+                  backgroundColor: "rgb(0,77,154)",
+                  borderColor: "rgb(0,77,154)",
                   data: _.pluck(data["Service"], y_axis),
+                  lineTension: 0.2
                 },
                 {
                   label: "Good",
-                  backgroundColor: "green",
-                  borderColor: "green",
+                  backgroundColor: "rgb(70, 191, 189)",
+                  borderColor: "rgb(70, 191, 189)",
                   data: _.pluck(data["Good"], y_axis),
+                  lineTension: 0.2
                 },
                 {
                   label: "Construction",
                   backgroundColor: "orange",
                   borderColor: "orange",
                   data: _.pluck(data["Construction"], y_axis),
+                  lineTension: 0.2
                 },
             ]
         };
@@ -135,33 +141,38 @@ function drawLineChart(id, data, x_axis, y_axis) {
             datasets: [
                 {
                   label: "Total",
-                  backgroundColor: "red",
-                  borderColor: "red",
+                  backgroundColor: "rgb(204,0,0)",
+                  borderColor: "rgb(204,0,0)",
                   data: _.pluck(data["Total"], y_axis),
+                  lineTension: 0.2
                 },
                 {
                   label: "TC",
-                  backgroundColor: "blue",
-                  borderColor: "blue",
+                  backgroundColor: "rgb(0,77,154)",
+                  borderColor: "rgb(0,77,154)",
                   data: _.pluck(data["TC"], y_axis),
+                  lineTension: 0.2
                 },
                 {
                   label: "OB",
-                  backgroundColor: "green",
-                  borderColor: "green",
+                  backgroundColor: "rgb(70, 191, 189)",
+                  borderColor: "rgb(70, 191, 189)",
                   data: _.pluck(data["OB"], y_axis),
+                  lineTension: 0.2
                 },
                 {
                   label: "AC",
                   backgroundColor: "orange",
                   borderColor: "orange",
                   data: _.pluck(data["AC"], y_axis),
+                  lineTension: 0.2
                 },
                 {
                   label: "TN",
                   backgroundColor: "black",
                   borderColor: "black",
                   data: _.pluck(data["TN"], y_axis),
+                  lineTension: 0.2
                 },
             ]
         };
@@ -172,12 +183,16 @@ function drawLineChart(id, data, x_axis, y_axis) {
         scales: {
             yAxes: [{
                 ticks: {
+                    callback: function(value, index, values) {
+                        return (id == 'chart6' || id == 'chart8') ? formatNumberMini(value) : formatDollarMini(value);
+                    },
                     beginAtZero:true
                 },
                 scaleLabel: {
                      display: true,
-                     labelString: 'Years',
-                     fontSize: 20
+                     labelString: (id == 'chart5' || id == 'chart7') ? 'Value($)' : 'Number of contracts($)',
+                     fontSize: 15,
+                     fontColor: 'black'
                   }
             }]
         }
@@ -354,7 +369,7 @@ function updateDoughnutChart(id, data, y_axis) {
 }
 
 
-function updateLineChart(id, data, y_axis) {
+function updateLineChart(id, data, x_axis, y_axis) {
 
   if (y_axis == 'Value') {
     for( type in data) {
@@ -365,6 +380,7 @@ function updateLineChart(id, data, y_axis) {
     }
   }
 
+  myCharts[id].data.labels = _.pluck(data["Total"], x_axis);
   myCharts[id].data.datasets[0].data = _.pluck(data['Total'], y_axis);
   if(id == 'chart5' || id == 'chart6') {
     myCharts[id].data.datasets[1].data = _.pluck(data['Service'], y_axis);
