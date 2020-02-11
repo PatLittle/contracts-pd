@@ -108,8 +108,8 @@ function drawLineChart(id, data, x_axis, y_axis) {
                   backgroundColor: "rgb(204,0,0)",
                   borderColor: "rgb(204,0,0)",
                   data: _.pluck(data["Total"], y_axis),
-                  pointBorderColor: "black",
-                  pointBackgroundColor: "white",
+                  // pointBorderColor: "black",
+                  // pointBackgroundColor: "white",
                   lineTension: 0.2
                 },
                 {
@@ -147,30 +147,30 @@ function drawLineChart(id, data, x_axis, y_axis) {
                   lineTension: 0.2
                 },
                 {
-                  label: "TC",
+                  label: "Traditional Competitive",
                   backgroundColor: "rgb(0,77,154)",
                   borderColor: "rgb(0,77,154)",
                   data: _.pluck(data["TC"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "OB",
+                  label: "Open Bidding",
                   backgroundColor: "rgb(70, 191, 189)",
                   borderColor: "rgb(70, 191, 189)",
                   data: _.pluck(data["OB"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "AC",
+                  label: "Advanced Contract Award Notice",
                   backgroundColor: "orange",
                   borderColor: "orange",
                   data: _.pluck(data["AC"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "TN",
-                  backgroundColor: "black",
-                  borderColor: "black",
+                  label: "Traditional Non-Competitive",
+                  backgroundColor: "rgb(0,154,0)",
+                  borderColor: "rgb(0,154,0)",
                   data: _.pluck(data["TN"], y_axis),
                   lineTension: 0.2
                 },
@@ -180,6 +180,15 @@ function drawLineChart(id, data, x_axis, y_axis) {
 
 
     var options = {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'left',
+          labels: {
+            usePointStyle: false,
+            boxWidth: 25
+          }
+        }, 
         scales: {
             yAxes: [{
                 ticks: {
@@ -203,6 +212,9 @@ function drawLineChart(id, data, x_axis, y_axis) {
       data: chartData,
       options: options
   });
+
+  // var myLegendContainer = document.getElementById("legend");
+  // myLegendContainer.innerHTML = myCharts[id].generateLegend();
 
 
 }
