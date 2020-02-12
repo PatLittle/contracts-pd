@@ -12,7 +12,7 @@ function populateTable(data, id) {
       newData = _.union(newData, data[index]);
     }
     data = newData;
-    // console.log(data);
+    console.log(data);
   }
 
   
@@ -20,7 +20,19 @@ function populateTable(data, id) {
   let tableData = _.map(data, function(obj) {
     return _.values(obj);
   });
-  // console.log(tableData);
+
+  // replace acronyms with full names
+  _.each(tableData, function(obj) {
+    _.each(obj, function(value, key) {
+      if(value === 'TN') obj[key] = 'Traditional Non-Competitive';
+      if(value === 'TC') obj[key] = 'Traditional Competitive';
+      if(value === 'OB') obj[key] = 'Open Bidding';
+      if(value === 'AC') obj[key] = 'Advanced Contract Award Notice';
+    });
+  });
+
+  console.log(tableData);
+
 
   let headers = _.map(_.keys(data[0]), function(header) {
     return { title: header };
@@ -93,7 +105,7 @@ function populateCustomTable(data, id) {
 
 function updateTable(data, id) {
   $('#'+id).DataTable().destroy();
-
+  console.log(data);
   if (id == 'table5' || id == 'table6') {
     // data = _.map(data, function(obj) {
     //   return _.values(obj);
@@ -103,11 +115,20 @@ function updateTable(data, id) {
       newData = _.union(newData, data[index]);
     }
     data = newData;
-    // console.log(data);
   }
 
   let tableData = _.map(data, function(obj) {
     return _.values(obj);
+  });
+
+  // replace acronyms with full names
+  _.each(tableData, function(obj) {
+    _.each(obj, function(value, key) {
+      if(value === 'TN') obj[key] = 'Traditional Non-Competitive';
+      if(value === 'TC') obj[key] = 'Traditional Competitive';
+      if(value === 'OB') obj[key] = 'Open Bidding';
+      if(value === 'AC') obj[key] = 'Advanced Contract Award Notice';
+    });
   });
 
   let headers = _.map(_.keys(data[0]), function(header) {

@@ -10,3 +10,7 @@ canvas {
 select.form-control {
   -webkit-appearance:menulist
 }
+
+td{
+  border-right: 4px;
+}
