@@ -39,11 +39,15 @@ function spendingPerType(data) {
 function spendingPerYear(data, dep_name, chartType) {
 
   if (dep_name == 'All') {
-    typeGroup = _.chain(data).groupBy(chartType).mapObject(dep => _.groupBy(dep, 'year')).value();
+    typeGroup = _.chain(data).groupBy(chartType).mapObject(function(dep) {
+     return _.groupBy(dep, 'year');
+    }).value();
     yearGroup = _.chain(data).groupBy('year').value();
   } else {
     data = _.filter(data, function(row) { return row['department_en'] == dep_name })
-    typeGroup = _.chain(data).groupBy(chartType).mapObject(dep => _.groupBy(dep, 'year')).value();
+    typeGroup = _.chain(data).groupBy(chartType).mapObject(function(dep) {
+      return _.groupBy(dep, 'year');
+    }).value();
     yearGroup = _.chain(data).groupBy('year').value();
   }
 
