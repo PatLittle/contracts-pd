@@ -53,30 +53,6 @@ function spendingPerYear(data, dep_name, chartType) {
 
   let result = {};
   let result_total = [];
-  for (year in yearGroup) {
-    var contracts_count_total = _.reduce(_.pluck(yearGroup[year], 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0);
-    var value_total = _.reduce(_.pluck(yearGroup[year], 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0) + _.reduce(_.pluck(yearGroup[year], 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
-    if (chartType == 'commodity_type_en') {
-      result_total.push({
-        "Year" : year,
-        "Commodity type": "Total",
-        "Number": contracts_count_total,
-        "Percent of total number of contracts": "100%",
-        "Value" : formatDollar(value_total),
-        "Percent of total value": "100%"
-      });
-    } else if (chartType == 'solicitation_code') {
-      result_total.push({
-        "Year" : year,
-        "Solicitation procedure": "Total",
-        "Number": contracts_count_total,
-        "Percent of total number of contracts": "100%",
-        "Value" : formatDollar(value_total),
-        "Percent of total value": "100%"
-      });
-    }
-  }
-  result['Total'] = result_total;
 
   for (var type in typeGroup) {
     var resultPerType = []
@@ -111,6 +87,31 @@ function spendingPerYear(data, dep_name, chartType) {
     }
     result[type] = resultPerType;
   }
+
+  for (year in yearGroup) {
+    var contracts_count_total = _.reduce(_.pluck(yearGroup[year], 'contracts_count'), function(memo, num){ return memo + parseInt(num); }, 0);
+    var value_total = _.reduce(_.pluck(yearGroup[year], 'original_value'), function(memo, num){ return memo + parseInt(num); }, 0) + _.reduce(_.pluck(yearGroup[year], 'amendment_value'), function(memo, num){ return memo + parseInt(num); }, 0);
+    if (chartType == 'commodity_type_en') {
+      result_total.push({
+        "Year" : year,
+        "Commodity type": "Total",
+        "Number": contracts_count_total,
+        "Percent of total number of contracts": "100%",
+        "Value" : formatDollar(value_total),
+        "Percent of total value": "100%"
+      });
+    } else if (chartType == 'solicitation_code') {
+      result_total.push({
+        "Year" : year,
+        "Solicitation procedure": "Total",
+        "Number": contracts_count_total,
+        "Percent of total number of contracts": "100%",
+        "Value" : formatDollar(value_total),
+        "Percent of total value": "100%"
+      });
+    }
+  }
+  result['Total'] = result_total;
   // console.log(result);
   return result;
 }
@@ -376,7 +377,7 @@ function consumeData(error, under10k_data, over10k_data) {
 
   var deps_list = _.sortBy(_.uniq(_.pluck(_.union(under10k_data, over10k_data),'department_en')), function (dep) {return dep});
   deps_list.unshift('All');
-  var deps_list_over_10k = _.uniq(_.pluck(over10k_data,'department_en'));
+  var deps_list_over_10k = _.sortBy(_.uniq(_.pluck(over10k_data,'department_en')), function (dep) {return dep});
   deps_list_over_10k.unshift('All');
   // console.log(deps_list);
   // console.log(deps_list_under_10k);
