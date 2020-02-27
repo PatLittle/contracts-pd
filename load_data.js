@@ -366,7 +366,16 @@ if (vizType == 'table') {
 
 
 
-
+function getContractRange(under10k, over10k) {
+  let range = d3.select('#commodity_value_range').property("value");
+  if (range == 'under10k'){
+    return under10k;
+  } else if (range == 'over10k') {
+    return over10k;
+  } else {
+    return _.union(under10k, over10k);
+  }
+}
 
 
 function consumeData(error, under10k_data, over10k_data) {
@@ -434,12 +443,12 @@ function consumeData(error, under10k_data, over10k_data) {
 
   // d3.select('#value_range').property("value","All").on('change', function(){
   //   let sel_value = d3.select('#value_range').property("value");
-  //   if(sel_value == 'under25k') {
+  //   if(sel_value == 'under10k') {
   //     table1_output = spendingPerType(under10k_data);
   //     updateTable(table1_output, 'table1');
   //     updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
   //     updateDoughnutChart('chart2', table1_output.slice(0,3), "Value");
-  //   } else if(sel_value == 'over25k') {
+  //   } else if(sel_value == 'over10k') {
   //     table1_output = spendingPerType(over10k_data);
   //     updateTable(table1_output, 'table1');
   //     updateDoughnutChart('chart1', table1_output.slice(0,3), "Number");
@@ -454,8 +463,19 @@ function consumeData(error, under10k_data, over10k_data) {
 
 
   d3.select('#commodity_dep').property("value","All").on('change', function(){
-    let sel_value = d3.select('#commodity_dep').property("value");
-    let table5_output = spendingPerYear(_.union(under10k_data, over10k_data), sel_value, 'commodity_type_en');
+    let sel_dep = d3.select('#commodity_dep').property("value");
+    let range = getContractRange(under10k_data, over10k_data);
+    let table5_output = spendingPerYear(range, sel_dep, 'commodity_type_en');
+    updateTable(table5_output, 'table5');
+    updateLineChart('chart5', table5_output, 'Year', 'Value');
+    updateLineChart('chart6', table5_output, 'Year', 'Number');
+    console.log(table5_output);
+  });
+
+  d3.select('#commodity_value_range').property("value","All").on('change', function(){
+    let sel_dep = d3.select('#commodity_dep').property("value");
+    let range = getContractRange(under10k_data, over10k_data);
+    let table5_output = spendingPerYear(range, sel_dep, 'commodity_type_en');
     updateTable(table5_output, 'table5');
     updateLineChart('chart5', table5_output, 'Year', 'Value');
     updateLineChart('chart6', table5_output, 'Year', 'Number');
@@ -463,8 +483,8 @@ function consumeData(error, under10k_data, over10k_data) {
   });
 
   d3.select('#solicit_dep').property("value","All").on('change', function(){
-    let sel_value = d3.select('#solicit_dep').property("value");
-    let table6_output = spendingPerYear(over10k_data, sel_value, 'solicitation_code');
+    let sel_dep = d3.select('#solicit_dep').property("value");
+    let table6_output = spendingPerYear(over10k_data, sel_dep, 'solicitation_code');
     updateTable(table6_output, 'table6');
     updateLineChart('chart7', table6_output, 'Year', 'Value');
     updateLineChart('chart8', table6_output, 'Year', 'Number');
