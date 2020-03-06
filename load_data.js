@@ -399,8 +399,8 @@ function consumeData(error, under10k_data, over10k_data) {
       .enter()
       .append("option")
         // .attr("value", function (d) { return d; })
-        .text(function (d) { 
-          return d; 
+        .text(function (d) {
+          return d;
         });
 
   var select_solicit_dep = d3.select("#solicit_dep");
@@ -420,6 +420,7 @@ function consumeData(error, under10k_data, over10k_data) {
   //           .text(function (d) {
   //           return d[0].toUpperCase() + d.slice(1,d.length); // capitalize 1st letter
   //       });
+
 
 
     
@@ -462,7 +463,7 @@ function consumeData(error, under10k_data, over10k_data) {
   // });
 
 
-  d3.select('#commodity_dep').property("value","All").on('change', function(){
+  d3.select('#commodity_dep').on('change', function(){
     let sel_dep = d3.select('#commodity_dep').property("value");
     let range = getContractRange(under10k_data, over10k_data);
     let table5_output = spendingPerYear(range, sel_dep, 'commodity_type_en');
@@ -472,7 +473,7 @@ function consumeData(error, under10k_data, over10k_data) {
     console.log(table5_output);
   });
 
-  d3.select('#commodity_value_range').property("value","All").on('change', function(){
+  d3.select('#commodity_value_range').on('change', function(){
     let sel_dep = d3.select('#commodity_dep').property("value");
     let range = getContractRange(under10k_data, over10k_data);
     let table5_output = spendingPerYear(range, sel_dep, 'commodity_type_en');
@@ -482,7 +483,7 @@ function consumeData(error, under10k_data, over10k_data) {
     console.log(table5_output);
   });
 
-  d3.select('#solicit_dep').property("value","All").on('change', function(){
+  d3.select('#solicit_dep').on('change', function(){
     let sel_dep = d3.select('#solicit_dep').property("value");
     let table6_output = spendingPerYear(over10k_data, sel_dep, 'solicitation_code');
     updateTable(table6_output, 'table6');
