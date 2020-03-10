@@ -104,7 +104,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
             labels: _.pluck(data["Total"], x_axis),
             datasets: [
                 {
-                  label: "Total",
+                  label: trans("Total"),
                   backgroundColor: "rgb(204,0,0)",
                   borderColor: "rgb(204,0,0)",
                   data: _.pluck(data["Total"], y_axis),
@@ -113,21 +113,21 @@ function drawLineChart(id, data, x_axis, y_axis) {
                   lineTension: 0.2
                 },
                 {
-                  label: "Service",
+                  label: trans("Service"),
                   backgroundColor: "rgb(0,77,154)",
                   borderColor: "rgb(0,77,154)",
                   data: _.pluck(data["Service"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "Good",
+                  label: trans("Good"),
                   backgroundColor: "rgb(70, 191, 189)",
                   borderColor: "rgb(70, 191, 189)",
                   data: _.pluck(data["Good"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "Construction",
+                  label: trans("Construction"),
                   backgroundColor: "orange",
                   borderColor: "orange",
                   data: _.pluck(data["Construction"], y_axis),
@@ -147,28 +147,28 @@ function drawLineChart(id, data, x_axis, y_axis) {
                   lineTension: 0.2
                 },
                 {
-                  label: "Traditional Competitive",
+                  label: trans("Traditional Competitive"),
                   backgroundColor: "rgb(0,77,154)",
                   borderColor: "rgb(0,77,154)",
                   data: _.pluck(data["TC"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "Open Bidding",
+                  label: trans("Open Bidding"),
                   backgroundColor: "rgb(70, 191, 189)",
                   borderColor: "rgb(70, 191, 189)",
                   data: _.pluck(data["OB"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "Advanced Contract Award Notice",
+                  label: trans("Advanced Contract Award Notice"),
                   backgroundColor: "orange",
                   borderColor: "orange",
                   data: _.pluck(data["AC"], y_axis),
                   lineTension: 0.2
                 },
                 {
-                  label: "Traditional Non-Competitive",
+                  label: trans("Traditional Non-Competitive"),
                   backgroundColor: "rgb(0,154,0)",
                   borderColor: "rgb(0,154,0)",
                   data: _.pluck(data["TN"], y_axis),
@@ -199,7 +199,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
                 },
                 scaleLabel: {
                      display: true,
-                     labelString: (id == 'chart5' || id == 'chart7') ? 'Value($)' : 'Number of contracts($)',
+                     labelString: (id == 'chart5' || id == 'chart7') ? trans('Value($)') : trans('Number of contracts($)'),
                      fontSize: 15,
                      fontColor: 'black'
                   }

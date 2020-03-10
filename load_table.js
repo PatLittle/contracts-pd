@@ -24,10 +24,10 @@ function populateTable(data, id) {
   // replace acronyms with full names
   _.each(tableData, function(obj) {
     _.each(obj, function(value, key) {
-      if(value === 'TN') obj[key] = 'Traditional Non-Competitive';
-      if(value === 'TC') obj[key] = 'Traditional Competitive';
-      if(value === 'OB') obj[key] = 'Open Bidding';
-      if(value === 'AC') obj[key] = 'Advanced Contract Award Notice';
+      if(value === 'TN') obj[key] = trans('Traditional Non-Competitive');
+      if(value === 'TC') obj[key] = trans('Traditional Competitive');
+      if(value === 'OB') obj[key] = trans('Open Bidding');
+      if(value === 'AC') obj[key] = trans('Advanced Contract Award Notice');
     });
   });
 
@@ -35,7 +35,7 @@ function populateTable(data, id) {
 
 
   let headers = _.map(_.keys(data[0]), function(header) {
-    return { title: header };
+    return { title: trans(header) };
   });
 
   if (id == 'table3' || id == 'table4') {
@@ -124,10 +124,10 @@ function updateTable(data, id) {
   // replace acronyms with full names
   _.each(tableData, function(obj) {
     _.each(obj, function(value, key) {
-      if(value === 'TN') obj[key] = 'Traditional Non-Competitive';
-      if(value === 'TC') obj[key] = 'Traditional Competitive';
-      if(value === 'OB') obj[key] = 'Open Bidding';
-      if(value === 'AC') obj[key] = 'Advanced Contract Award Notice';
+      if(value === 'TN') obj[key] = trans('Traditional Non-Competitive');
+      if(value === 'TC') obj[key] = trans('Traditional Competitive');
+      if(value === 'OB') obj[key] = trans('Open Bidding');
+      if(value === 'AC') obj[key] = trans('Advanced Contract Award Notice');
     });
   });
 

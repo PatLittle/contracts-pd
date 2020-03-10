@@ -1,0 +1,22 @@
+{
+    "Year" : "Année",
+    "Commodity type" : "Type de produit",
+    "Number" : "Nombre",
+    "Percent of total number of contracts" : "Pourcentage du nombre total de contrats",
+    "Value" : "Valeur",
+    "Percent of total value" : "Pourcentage de la valeure totale",
+    "Solicitation procedure" : "Méthode d’invitation à soumissionner",
+    "Traditional Competitive" : "Traditionnelle Concurrentielle",
+    "Open Bidding" : "Invitation ouverte à soumissionner concurrentielle",
+    "Advanced Contract Award Notice" : "Préavis d’attribution de contrat",
+    "Traditional Non-Competitive" : "Traditionnelle Non concurrentielle",
+    "Total" : "Total",
+    "Service" : "Service",
+    "Good" : "Bien",
+    "Construction" : "Construction",
+    "commodity_type_en" : "commodity_type_fr",
+    "Value($)" : "Valeur($)",
+    "Number of contracts($)" : "Nombre de contrats($)",
+    "All": "Tous",
+    "department_en": "department_fr"
+}
