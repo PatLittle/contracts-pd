@@ -5,7 +5,8 @@ let formatPercent = function(d) { return d3.format(".1f")(d) + "%"; }
 let formatNumberMini = function(d) { return d3.format(".2s")(d).replace(/G/,"B"); }
 
 var url = window.location.href;
-var fr_page = (url.indexOf('contracts-fr.html') > -1) ? true : false;
+var lang = document.querySelector('html').lang;
+var fr_page = (lang == 'fr') ? true : false;
 
 var fr_json = JSON.parse($.ajax({ 
         url: 'translate.json', 
@@ -49,7 +50,7 @@ function spendingPerYear(data, dep_name, chartType) {
       if (chartType == 'commodity_type_en') {
         resultPerType.push({
           "Year" : year,
-          "Commodity type": type,
+          "Commodity type": trans(type),
           "Number": contracts_count,
           "Percent of total number of contracts": formatPercent(percent_total),
           "Value" : formatDollar(original_value + amendment_value),
