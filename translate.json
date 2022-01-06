@@ -16,7 +16,7 @@
     "Construction" : "Construction",
     "commodity_type_en" : "commodity_type_fr",
     "Value($)" : "Valeur($)",
-    "Number of contracts($)" : "Nombre de contrats($)",
+    "Number of contracts" : "Nombre de contrats",
     "All": "Tous",
     "department_en": "department_fr"
 }

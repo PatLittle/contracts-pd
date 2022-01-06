@@ -199,7 +199,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
                 },
                 scaleLabel: {
                      display: true,
-                     labelString: (id == 'chart5' || id == 'chart7') ? trans('Value($)') : trans('Number of contracts($)'),
+                     labelString: (id == 'chart5' || id == 'chart7') ? trans('Value($)') : trans('Number of contracts'),
                      fontSize: 15,
                      fontColor: 'black'
                   }
