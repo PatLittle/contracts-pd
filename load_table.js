@@ -4,9 +4,6 @@ function populateTable(data, id) {
   // console.log(data);
 
   if (id == 'table5' || id == 'table6') {
-    // data = _.map(data, function(obj) {
-    //   return _.values(obj);
-    // });
     newData = [];
     for (index in data) {
       newData = _.union(newData, data[index]);
@@ -107,9 +104,6 @@ function updateTable(data, id) {
   $('#'+id).DataTable().destroy();
   console.log(data);
   if (id == 'table5' || id == 'table6') {
-    // data = _.map(data, function(obj) {
-    //   return _.values(obj);
-    // });
     newData = [];
     for (index in data) {
       newData = _.union(newData, data[index]);

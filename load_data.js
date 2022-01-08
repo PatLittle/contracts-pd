@@ -95,7 +95,6 @@ function spendingPerYear(data, dep_name, chartType) {
     }
   }
   result['Total'] = result_total;
-  // console.log(result);
   return result;
 }
 
@@ -122,9 +121,6 @@ function consumeData(error, under10k_data, over10k_data) {
   deps_list.unshift(trans('All'));
   var deps_list_over_10k = _.sortBy(_.uniq(_.pluck(over10k_data,trans('department_en'))), function (dep) {return dep});
   deps_list_over_10k.unshift(trans('All'));
-  // console.log(deps_list);
-  // console.log(deps_list_under_10k);
-  // _.sortBy(["Bob", "Mary", "Alice"], function (name) {return name});
   
   // load select list options
   var select_commodity_dep = d3.select("#commodity_dep");
@@ -132,7 +128,6 @@ function consumeData(error, under10k_data, over10k_data) {
       .data(deps_list)
       .enter()
       .append("option")
-        // .attr("value", function (d) { return d; })
         .text(function (d) {
           return d;
         });
@@ -142,7 +137,6 @@ function consumeData(error, under10k_data, over10k_data) {
       .data(deps_list_over_10k)
       .enter()
       .append("option")
-        // .attr("value", function (d) { return d; })
         .text(function (d) { 
           return d; 
         });
@@ -155,7 +149,6 @@ function consumeData(error, under10k_data, over10k_data) {
 
 
   // // Table 1
-  // let table1_output = spendingPerType(_.union(under10k_data, over10k_data));
   let table5_output = spendingPerYear(_.union(under10k_data, over10k_data), trans('All'), 'commodity_type_en');
   let table6_output = spendingPerYear(over10k_data, trans('All'), 'solicitation_code');
 
@@ -211,14 +204,10 @@ function consumeData(error, under10k_data, over10k_data) {
 
 // Animate Chart drawing using Materialize
   var options = [
-    // {selector: '#chart1', offset:50, callback: drawChart1},
-    // {selector: '#chart2', offset:50, callback: drawChart2},
     {selector: '#chart5', offset:50, callback: drawChart5},
     {selector: '#chart6', offset:50, callback: drawChart6},
     {selector: '#chart7', offset:50, callback: drawChart7},
     {selector: '#chart8', offset:50, callback: drawChart8},
-    // {selector: '#chart3', offset:50, callback: drawChart3},
-    // {selector: '#chart4', offset:50, callback: drawChart4}
   ];
   Materialize.scrollFire(options);
 
@@ -231,6 +220,4 @@ function consumeData(error, under10k_data, over10k_data) {
 d3.queue()
   .defer(d3.csv, 'contracts_viz_under_10k.csv')
   .defer(d3.csv, 'contracts_viz_over_10k.csv')
-  // .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_under_25k.csv')
-  // .defer(d3.csv, 'https://open.canada.ca/static/dv/contracts/data/contracts_over_25k.csv')
   .await(consumeData); //only function name is needed

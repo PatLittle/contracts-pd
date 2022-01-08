@@ -90,14 +90,6 @@ function drawLineChart(id, data, x_axis, y_axis) {
     // Chart.defaults.global.elements.line.lineTension = 0.1;
     Chart.defaults.global.elements.line.borderCapStyle = 'square';
     Chart.defaults.global.elements.line.borderDash = []; // try [5, 15] for instance
-    // Chart.defaults.global.elements.line.pointBorderColor = "black";
-    // Chart.defaults.global.elements.line.pointBorderWidth = 1;
-    // Chart.defaults.global.elements.line.pointHoverRadius = 8;
-    // Chart.defaults.global.elements.line.pointHoverBackgroundColor = "yellow";
-    // Chart.defaults.global.elements.line.pointHoverBorderColor = "brown";
-    // Chart.defaults.global.elements.line.pointHoverBorderWidth = 2;
-    // Chart.defaults.global.elements.line.pointRadius = 4;
-    // Chart.defaults.global.elements.line.pointHitRadius = 10;
 
     if(id == 'chart5' || id == 'chart6') {
         var chartData = {
@@ -108,8 +100,6 @@ function drawLineChart(id, data, x_axis, y_axis) {
                   backgroundColor: "rgb(204,0,0)",
                   borderColor: "rgb(204,0,0)",
                   data: _.pluck(data["Total"], y_axis),
-                  // pointBorderColor: "black",
-                  // pointBackgroundColor: "white",
                   lineTension: 0.2
                 },
                 {
@@ -212,17 +202,7 @@ function drawLineChart(id, data, x_axis, y_axis) {
       data: chartData,
       options: options
   });
-
-  // var myLegendContainer = document.getElementById("legend");
-  // myLegendContainer.innerHTML = myCharts[id].generateLegend();
-
-
 }
-
-
-
-
-
 
 
 function drawBarChart(id, data, x_axis, y_axis) {
@@ -271,9 +251,6 @@ function drawBarChart(id, data, x_axis, y_axis) {
     };
   }
 
-
-
-
   var options = {
     layout: {
       padding: {
@@ -315,7 +292,6 @@ function drawBarChart(id, data, x_axis, y_axis) {
         yAxes: [{
             stacked: true,
             ticks: {
-                // display: (id == 'chart3') ? true : false,
                 beginAtZero: true,
                 fontColor: 'black'
             },
@@ -352,10 +328,6 @@ function drawBarChart(id, data, x_axis, y_axis) {
   });
 
 }
-
-
-
-
 
 function updateDoughnutChart(id, data, y_axis) {
 
@@ -407,9 +379,6 @@ function updateLineChart(id, data, x_axis, y_axis) {
   console.log(_.pluck(data['OB'], y_axis));
   myCharts[id].update();
 }
-
-
-
 
 function updateBarChart(id, data, y_axis) {
 
